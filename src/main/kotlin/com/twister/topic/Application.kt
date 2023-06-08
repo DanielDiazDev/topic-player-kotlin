@@ -9,8 +9,14 @@ import io.ktor.server.plugins.contentnegotiation.*
 import routes.registerPlayerRoutes
 
 fun main() {
-    embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
-        .start(wait = true)
+
+    val port = System.getenv("PORT")?.toInt() ?: 8080
+    embeddedServer(Netty, port = port, host = "0.0.0.0") {
+        
+    }.start(wait = true)
+
+    //embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
+        //.start(wait = true)
 }
 
 fun Application.module() {
